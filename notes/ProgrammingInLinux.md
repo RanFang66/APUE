@@ -219,6 +219,27 @@
   | F_GETOWN或F_SETOWN       | 获取/设置异步I/O所有权      |
   | F_GETLK或F_SETLK         | 获取/设置记录锁             |
 
+- ioctl函数
+
+  ioctl函数一直是I/O操作的杂物箱，用在其他函数无法表示的I/O操作。终端I/O是ioctl使用最多的地方：
+
+  ```c
+  #include <unistd.h>
+  #include <sys/ioctl.h>
+  
+  int ioctl(int fd, int request, ...);
+  ```
+
+  每个设备驱动程序可以定义它自己专用的一组ioctl命令，系统则为不同种类的设备提供通用的ioctl命令：
+
+  | 类别      | 常量名  | 头文件            | ioctl数 |
+  | --------- | ------- | ----------------- | ------- |
+  | 盘标号    | DIOxxx  | <sys/disklabel.h> | 4       |
+  | 文件I/O   | FIOxxx  | <sys/filio.h>     | 14      |
+  | 磁带I/O   | MTIOxxx | <sys/mtio.h>      | 11      |
+  | 套接字I/O | SIOxxx  | <sys/sockio.h>    | 73      |
+  | 终端I/O   | TIOxxx  | <sys/ttycom.h>    | 43      |
+
   
 
 ### 2. Linux 多进程
@@ -227,9 +248,7 @@
 
 ### 3. Linux 进程间通信
 
-
-
-###4. Linux 多线程
+### 4. Linux 多线程
 
 
 
