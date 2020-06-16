@@ -39,7 +39,7 @@ typedef void Sigfunc(int);
 /**
  * Prototypes for our own functions
  */
-char    *path_alloc(int *);
+char    *path_alloc(size_t *);
 long    open_max(void);
 void    clr_fl(int, int);
 void    set_fl(int, int);
